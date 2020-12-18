@@ -138,7 +138,7 @@ def format_result(result):
 
 def format_stderr(error):
     ename = type(error).__name__
-    if isinstance(error, MichelsonRuntimeError):
+    if isinstnce(error, MichelsonRuntimeError):
         evalue, traceback = error.message, 'at ' + ' -> '.join(error.trace)
     elif isinstance(error, MichelsonParserError):
         evalue, traceback = error.message, f'at line {error.line}, pos {error.pos}'
@@ -151,7 +151,7 @@ def format_stderr(error):
 
 class Interpreter:
     """ Michelson interpreter reimplemented in Python.
-    Based on the following reference: https://michelson.nomadic-labs.com/
+    Based on the following reference: https://tezos.gitlab.io/michelson-reference/
     """
 
     def __init__(self, debug=True):
